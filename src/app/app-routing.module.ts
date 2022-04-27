@@ -9,17 +9,17 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'search/:game-search ',
+    path: 'search/:game-search',
     component: HomeComponent,
   },
   {
     path: 'details/:id',
     component: DetailsComponent,
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,10 +17,16 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptor';
 import { DetailsComponent } from './components/details/details.component';
 import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  declarations: [AppComponent, SearchBarComponent, HomeComponent, DetailsComponent, GameTabsComponent],
+  declarations: [
+    AppComponent,
+    SearchBarComponent,
+    HomeComponent,
+    DetailsComponent,
+    GameTabsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,6 +39,8 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
     MatTabsModule,
     MatSelectModule,
     MatIconModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
   ],
   providers: [
     // {
@@ -48,5 +55,6 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

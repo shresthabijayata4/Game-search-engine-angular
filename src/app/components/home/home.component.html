@@ -2,7 +2,11 @@
   <mat-form-field>
     <mat-label>Sort</mat-label>
     <!-- ngModel is a directive which binds input, select and textarea, and stores the required user value in a variable -->
-    <mat-select panelClass="sort-select" [(ngModel)]="sort" (selectionChange)="searchGames(sort)">
+    <mat-select
+      panelClass="sort-select"
+      [(ngModel)]="sort"
+      (selectionChange)="searchGames(sort)"
+    >
       <mat-option value="name">Name</mat-option>
       <mat-option value="-released">Released</mat-option>
       <mat-option value="-added">Added</mat-option>

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { APIResponse, Game } from 'src/models';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +19,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private httpService: HttpService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
+    this.spinner.show();
     this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
       if (params['game-search']) {
         this.searchGames('metacrit', params['game-search']);
@@ -29,18 +32,21 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.searchGames('metacrit');
       }
     });
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
   }
-  searchGames(sort: any, search?: any): void {
-    this.httpService
+
+  searchGames(sort: any, search?: string): void {
+    this.gameSub = this.httpService
       .getGameList(sort, search)
       .subscribe((gameList: APIResponse<Game>) => {
         this.games = gameList.results;
-        console.log(this.games);
-        // platform = gameList.results.parent_platforms.platform.name
+        console.log(gameList);
       });
   }
+
   openGameDetails(id: number): void {
-    console.log(id);
     this.router.navigate(['details', id]);
   }
 
